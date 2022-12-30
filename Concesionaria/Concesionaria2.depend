@@ -1,0 +1,232 @@
+# depslib dependency file v1.0
+1592161143 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevos servicios)\concesionaria2\src\auto.cpp
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592147794 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevos servicios)\concesionaria2\include\auto.h
+	"Lista.h"
+	<iostream>
+
+1592149370 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevos servicios)\concesionaria2\include\lista.h
+
+1592149370 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevos servicios)\concesionaria2\src\lista.cpp
+	<iostream>
+	<cassert>
+	"Lista.h"
+	"Auto.h"
+
+1592161068 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevos servicios)\concesionaria2\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<stdlib.h>
+	"Lista.h"
+	"Auto.h"
+
+1592060046 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevos servicios)\concesionaria2\src\arbol binario.cpp
+
+1592140166 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevos servicios)\concesionaria2\src\arbol.cpp
+	"Arbol.h"
+	<iostream>
+
+1592145433 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevos servicios)\concesionaria2\include\arbol.h
+	<iostream>
+
+1594766255 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<stdlib.h>
+	"Lista.h"
+	"Auto.h"
+	"Segment_Tree.h"
+
+1592149370 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\include\lista.h
+
+1592952377 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\include\auto.h
+	"Lista.h"
+	<iostream>
+
+1592952290 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\src\auto.cpp
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592601263 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\src\lista.cpp
+	<iostream>
+	<cassert>
+	"Lista.h"
+	"Auto.h"
+
+1592225502 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\src\arbol.cpp
+	"Arbol.h"
+	<iostream>
+	"Auto.h"
+
+1592231074 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\include\arbol.h
+	<iostream>
+	"Auto.h"
+
+1592421934 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\src\segment tree.cpp
+	<iostream>
+
+1593630213 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\src\segment_tree.cpp
+	"Segment_Tree.h"
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1593628185 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria (nuevo servicio)\concesionaria2\include\segment_tree.h
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1594766255 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria\concesionaria2\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<stdlib.h>
+	"Lista.h"
+	"Auto.h"
+	"Segment_Tree.h"
+
+1592149370 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria\concesionaria2\include\lista.h
+
+1592952377 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria\concesionaria2\include\auto.h
+	"Lista.h"
+	<iostream>
+
+1593628185 c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria\concesionaria2\include\segment_tree.h
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592952290 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria\concesionaria2\src\auto.cpp
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592601263 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria\concesionaria2\src\lista.cpp
+	<iostream>
+	<cassert>
+	"Lista.h"
+	"Auto.h"
+
+1593630213 source:c:\users\tomic\documents\ingeniera de sistemas (2do)\ayda i\laboratorios (2020)\trabajo especial\concesionaria\concesionaria2\src\segment_tree.cpp
+	"Segment_Tree.h"
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1594766255 source:c:\users\tomic\documents\ingeniera de sistemas\segundo (2do)\ayda i\laboratorios (2020)\sistema concesionaria\concesionaria\concesionaria2\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<stdlib.h>
+	"Lista.h"
+	"Auto.h"
+	"Segment_Tree.h"
+
+1592149370 c:\users\tomic\documents\ingeniera de sistemas\segundo (2do)\ayda i\laboratorios (2020)\sistema concesionaria\concesionaria\concesionaria2\include\lista.h
+
+1592952377 c:\users\tomic\documents\ingeniera de sistemas\segundo (2do)\ayda i\laboratorios (2020)\sistema concesionaria\concesionaria\concesionaria2\include\auto.h
+	"Lista.h"
+	<iostream>
+
+1593628185 c:\users\tomic\documents\ingeniera de sistemas\segundo (2do)\ayda i\laboratorios (2020)\sistema concesionaria\concesionaria\concesionaria2\include\segment_tree.h
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592952290 source:c:\users\tomic\documents\ingeniera de sistemas\segundo (2do)\ayda i\laboratorios (2020)\sistema concesionaria\concesionaria\concesionaria2\src\auto.cpp
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592601263 source:c:\users\tomic\documents\ingeniera de sistemas\segundo (2do)\ayda i\laboratorios (2020)\sistema concesionaria\concesionaria\concesionaria2\src\lista.cpp
+	<iostream>
+	<cassert>
+	"Lista.h"
+	"Auto.h"
+
+1593630213 source:c:\users\tomic\documents\ingeniera de sistemas\segundo (2do)\ayda i\laboratorios (2020)\sistema concesionaria\concesionaria\concesionaria2\src\segment_tree.cpp
+	"Segment_Tree.h"
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1594766255 source:c:\users\tomic\documents\ingeniera de sistemas\sistema concesionaria\concesionaria\concesionaria\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<stdlib.h>
+	"Lista.h"
+	"Auto.h"
+	"Segment_Tree.h"
+
+1592149370 c:\users\tomic\documents\ingeniera de sistemas\sistema concesionaria\concesionaria\concesionaria\include\lista.h
+
+1592952377 c:\users\tomic\documents\ingeniera de sistemas\sistema concesionaria\concesionaria\concesionaria\include\auto.h
+	"Lista.h"
+	<iostream>
+
+1593628185 c:\users\tomic\documents\ingeniera de sistemas\sistema concesionaria\concesionaria\concesionaria\include\segment_tree.h
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592952290 source:c:\users\tomic\documents\ingeniera de sistemas\sistema concesionaria\concesionaria\concesionaria\src\auto.cpp
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592601263 source:c:\users\tomic\documents\ingeniera de sistemas\sistema concesionaria\concesionaria\concesionaria\src\lista.cpp
+	<iostream>
+	<cassert>
+	"Lista.h"
+	"Auto.h"
+
+1593630213 source:c:\users\tomic\documents\ingeniera de sistemas\sistema concesionaria\concesionaria\concesionaria\src\segment_tree.cpp
+	"Segment_Tree.h"
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1594766255 source:c:\users\tomic\documents\sistema concesionaria\concesionaria\concesionaria\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<stdlib.h>
+	"Lista.h"
+	"Auto.h"
+	"Segment_Tree.h"
+
+1592149370 c:\users\tomic\documents\sistema concesionaria\concesionaria\concesionaria\include\lista.h
+
+1592952377 c:\users\tomic\documents\sistema concesionaria\concesionaria\concesionaria\include\auto.h
+	"Lista.h"
+	<iostream>
+
+1593628185 c:\users\tomic\documents\sistema concesionaria\concesionaria\concesionaria\include\segment_tree.h
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592952290 source:c:\users\tomic\documents\sistema concesionaria\concesionaria\concesionaria\src\auto.cpp
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
+1592601263 source:c:\users\tomic\documents\sistema concesionaria\concesionaria\concesionaria\src\lista.cpp
+	<iostream>
+	<cassert>
+	"Lista.h"
+	"Auto.h"
+
+1593630213 source:c:\users\tomic\documents\sistema concesionaria\concesionaria\concesionaria\src\segment_tree.cpp
+	"Segment_Tree.h"
+	"Auto.h"
+	"Lista.h"
+	<iostream>
+
