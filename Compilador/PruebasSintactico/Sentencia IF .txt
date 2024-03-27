@@ -1,0 +1,11 @@
+{   	
+	VOID f3 (){
+	INT x,
+	x = 1.2,
+	IF (x > 0.0){
+		x = 1.2324,
+		RETURN,
+	}
+	END_IF, 
+	} 
+}       

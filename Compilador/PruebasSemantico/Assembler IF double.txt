@@ -1,0 +1,15 @@
+{
+	INT a; se,
+	VOID f3 (){
+		DOUBLE x,
+		x = 1.2,
+		IF (x > 0.0){
+			x = 1.2324,
+			PRINT%OKKKK%,
+		}
+		END_IF,
+		RETURN,
+	}
+	f3(),
+	a = se + a,
+} 

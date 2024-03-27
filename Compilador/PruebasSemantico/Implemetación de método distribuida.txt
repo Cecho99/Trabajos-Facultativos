@@ -1,0 +1,15 @@
+{
+	
+	CLASS ca{
+		VOID f1(),
+	}
+	
+	IMPL FOR ca: {
+		VOID f1(){
+			INT b,
+		}
+	}
+
+	ca inst1,
+	inst1.f1(),
+} 

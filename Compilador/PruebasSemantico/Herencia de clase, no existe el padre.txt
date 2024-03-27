@@ -1,0 +1,8 @@
+{
+	
+	CLASS cb {
+		INT b,
+		b = 1_i,
+		ca,
+	}
+} 

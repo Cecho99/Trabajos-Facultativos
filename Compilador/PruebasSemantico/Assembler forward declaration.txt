@@ -1,0 +1,18 @@
+{
+	
+	CLASS ca,
+	
+	CLASS ca {
+		VOID f1(){
+			INT a,
+			RETURN,
+		}
+	}
+
+	ca inst1,
+
+	inst1.f1(),
+
+
+}  
+

@@ -1,0 +1,5 @@
+{
+	VOID a (){	
+          identificador_12 = 5_i,
+  }
+} 

@@ -1,0 +1,12 @@
+{
+	
+	VOID f1 (){
+		INT a,
+		a = 3_i,
+		DO {a = a + 1_i, PRINT %OKK%,} UNTIL ( a >= 5_i),
+		RETURN,
+	}
+
+	f1(),
+} 
+

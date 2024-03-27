@@ -1,0 +1,10 @@
+{
+	VOID f3 (){
+		INT x,
+		INT b,
+		b = 0_i,
+		x = x /b,
+		RETURN,
+	}
+	f3(),
+} 

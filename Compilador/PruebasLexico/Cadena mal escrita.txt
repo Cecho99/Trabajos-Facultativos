@@ -1,0 +1,6 @@
+{
+	VOID a (){
+	 PRINT %identificador 
+	a,   
+  }
+} 

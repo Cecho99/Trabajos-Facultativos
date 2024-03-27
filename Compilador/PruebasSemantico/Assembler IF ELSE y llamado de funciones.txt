@@ -1,0 +1,27 @@
+{
+	INT a,
+	INT b,
+	INT c,
+	INT d,
+
+   	b = 3_i,
+        c = 2_i,
+
+        VOID f1(){
+           IF (b !! c) {
+	    PRINT%entro en if%,
+           }ELSE{
+            PRINT%entro en else%,
+            }
+           END_IF,      
+           RETURN,
+       }
+
+	VOID f2(){
+          f1(),
+          RETURN,
+      }	
+
+      f2(),
+
+} 

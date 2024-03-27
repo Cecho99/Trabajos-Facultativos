@@ -1,0 +1,5 @@
+{
+	VOID a (){	
+          INT identificador,
+  }
+} 

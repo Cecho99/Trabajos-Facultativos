@@ -1,0 +1,26 @@
+{	
+	
+	CLASS ca {
+		INT a,
+
+		VOID f1(){
+			IF(a == 1_i){
+				PRINT %OKK%,
+			}
+			END_IF,
+			RETURN,
+		}
+	}
+
+	CLASS cb {
+		INT b,
+		b = 1_i,
+		ca,
+	}
+	
+	cb instancia,
+	
+	instancia.ca.a = 4_i,
+	instancia.ca.f1(),
+	
+} 

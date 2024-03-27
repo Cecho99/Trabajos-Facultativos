@@ -1,0 +1,7 @@
+{   	
+	VOID f3 (INT y){
+	INT x
+	x = y, 
+	RETURN,
+	} 
+ 

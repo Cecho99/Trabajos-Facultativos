@@ -1,0 +1,11 @@
+{
+	VOID f3 (){
+		PRINT %HOLA%,
+		VOID f3 (){
+			PRINT %HOLA%,
+			RETURN,
+		}
+		RETURN,
+	}
+	f3(),
+} 

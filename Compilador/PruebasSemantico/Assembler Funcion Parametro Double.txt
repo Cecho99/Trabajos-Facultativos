@@ -1,0 +1,11 @@
+{	
+	VOID f1 (DOUBLE a){
+		IF ( a >= 1.1){
+			PRINT %OKKK%,
+		}
+		END_IF,
+		RETURN,
+	}
+
+	f1(1.1),
+} 

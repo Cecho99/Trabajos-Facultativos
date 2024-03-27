@@ -1,0 +1,13 @@
+{   	
+	VOID f3 (INT y){
+	INT x,
+	y = x,
+	RETURN,
+     }
+
+	VOID f4 (){
+	INT y,
+	f3(y),
+	RETURN,
+     }
+ } 

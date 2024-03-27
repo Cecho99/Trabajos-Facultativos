@@ -1,0 +1,20 @@
+{	
+	CLASS ca {
+		INT a,
+		INT b,
+		VOID f1 (){
+			IF ( a == 1_i ){
+				PRINT %OKK%,
+			}
+			END_IF,
+			RETURN,
+		}
+	}
+
+	ca inst1; inst2,
+	
+	inst1.a = 1_i,
+	
+	inst1.f1(),
+	inst2.f1(),
+} 

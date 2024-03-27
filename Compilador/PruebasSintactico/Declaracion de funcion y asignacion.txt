@@ -1,0 +1,7 @@
+{   
+	VOID funcion(INT y){
+	INT x,    
+        x = y,   
+	RETURN, 
+     	} 
+}    

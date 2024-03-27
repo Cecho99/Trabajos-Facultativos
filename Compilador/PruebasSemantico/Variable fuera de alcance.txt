@@ -1,0 +1,8 @@
+{
+	VOID f1(){
+		INT a,
+		RETURN,
+	}
+	a = 1_i,
+	
+} 

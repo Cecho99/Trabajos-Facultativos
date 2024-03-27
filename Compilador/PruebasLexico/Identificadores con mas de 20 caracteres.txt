@@ -1,0 +1,5 @@
+{
+	VOID a (){	
+          identificadoresconmasdelopermitido = 5_i,
+  }
+} 

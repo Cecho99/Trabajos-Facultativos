@@ -1,0 +1,7 @@
+{
+	ULONG a,
+	VOID f1(INT b){
+		b = 1_i,
+	}
+	f1(a),
+} 
