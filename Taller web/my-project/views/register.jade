@@ -1,0 +1,78 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Registrarse - Food Saver
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.0/font/bootstrap-icons.min.css')
+    style.
+      .text-grey {
+        color: #757575;
+      }
+      .header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      .form-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      .button-container {
+        display: flex;
+        justify-content: center; /* Centrar los botones horizontalmente */
+        gap: 1rem; /* Espacio entre los botones */
+      }
+      .btn-large {
+        width: 200px; /* Ancho personalizado para los botones */
+        height: 200px; /* Altura personalizada para los botones */
+        font-size: 1.5rem; /* Tamaño de fuente personalizado */
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px; /* Borde redondeado */
+      }
+      .btn-large .bi-people-fill {
+        font-size: 3em;
+        width: 100px; /* Ancho del ícono */
+        height: 100px; /* Altura del ícono */
+        margin-bottom: 0; /* Espacio entre el ícono y el texto */
+      }
+      .btn-large .bi-shop {
+        font-size: 3em;
+        width: 100px; /* Ancho del ícono */
+        height: 100px; /* Altura del ícono */
+        margin-bottom: 0.2; /* Espacio entre el ícono y el texto */
+      }
+
+
+  body
+    .header
+      h1 Registrarse - Food Saver
+
+    .form-container
+      .button-container
+        //- Botón para registro de comercio
+        a.btn.btn-success.btn-large(href='/registerCommerce')
+          i.bi.bi-shop
+          | Comercio
+
+        a.btn.btn-success.btn-large(href='/registerUser')
+          i.bi.bi-people-fill
+          |  Usuario
+
+      hr
+
+      p.text-center.text-grey
+        | ¿Ya tienes una cuenta? 
+        a.text-grey-link(href='/') Iniciar sesión aquí
+
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')

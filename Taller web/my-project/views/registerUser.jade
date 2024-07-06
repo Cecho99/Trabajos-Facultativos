@@ -1,0 +1,123 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Registro de usuario - Food Saver
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css')
+    style.
+      body {
+       /* background: url('/images/fondo_registro.jpg') no-repeat center center fixed;
+        background-size: cover;*/
+      }
+      .header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem; /* Espacio entre la imagen y el texto */
+        border-bottom: 2px solid #388E3C; /* Línea fina debajo del encabezado */
+      }
+      .form-container {
+        max-width: 600px;
+        margin: 1rem auto; /* Cambiado de 2rem a 1rem para reducir el espacio superior */
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+      }
+      .text-grey {
+        color: #757575;
+      }
+      .password-container {
+        position: relative;
+      }
+      .password-container input {
+        padding-right: 40px; /* espacio para el icono del ojo */
+      }
+      .password-container .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+  body
+    .header
+      h2 Crear una cuenta - Food Saver
+
+    .form-container
+      form(action='/registerUser', method='POST')
+        .form-group
+          label(for='email') Correo Electrónico
+          input#email.form-control(type='email', name='email', placeholder='Correo Electrónico', value=email, required)
+
+        .form-group
+          label(for='username') Nombre de Usuario
+          input#username.form-control(type='text', name='username', placeholder='Nombre de Usuario', value=username, required minlength='3')
+          small.text-grey 3 caracteres mínimo
+
+        .form-row
+          .form-group.col-md-6
+            label(for='firstName') Nombre
+            input#firstName.form-control(type='text', name='firstName', placeholder='Nombre', value=firstName, required)
+          
+          .form-group.col-md-6
+            label(for='lastName') Apellido
+            input#lastName.form-control(type='text', name='lastName', placeholder='Apellido', value=lastName, required)
+
+        .form-group
+          label(for='password') Contraseña
+          .input-group
+            input#password.form-control(type='password', name='password', placeholder='Contraseña', required minlength='6')
+            .input-group-append
+              span.input-group-text
+                i.bi.bi-eye-slash-fill.toggle-password
+          .text-grey 6 caracteres mínimo
+        
+        .form-group
+          label(for='dateOfBirth') Fecha de Nacimiento
+          input#dateOfBirth.form-control(type='date', name='dateOfBirth')
+
+        .form-group
+          label(for='address') Dirección
+          input#address.form-control(type='text', name='address', placeholder='Dirección', required)
+
+        .form-group
+          label(for='postal_code') Código postal
+          input#postal_code.form-control(type='number', name='postal_code', placeholder='Código postal', required)
+        
+        .form-group
+          label(for='city') Ciudad
+          input#city.form-control(type='text', name='city', placeholder='Ciudad', required)
+
+        .form-group
+          label(for='province') Provincia
+          input#province.form-control(type='text', name='province', placeholder='Provincia', required)
+        
+        .form-group
+          label(for='country') País
+          input#country.form-control(type='text', name='country', placeholder='País', required)
+
+        button.btn.btn-success.btn-block(type='submit') Registrarse
+
+      hr
+
+      p.text-center.text-grey
+        | ¿Ya tienes una cuenta? 
+        a.text-grey-link(href='/') Iniciar sesión aquí
+
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+    script.
+      document.querySelector('.toggle-password').addEventListener('click', function (e) {
+        const passwordInput = document.querySelector('#password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('bi-eye-fill');
+        this.classList.toggle('bi-eye-slash-fill');
+      });

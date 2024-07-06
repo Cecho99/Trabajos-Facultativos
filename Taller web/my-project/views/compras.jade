@@ -1,0 +1,187 @@
+doctype html
+html(lang='en')
+  head
+    title Food Saver - Comerciante
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    style.
+      .header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      .products {
+        padding: 1rem;
+      }
+      .product-item {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        width: calc(25% - 1rem); /* 4 items per row */
+        text-align: center;
+        box-sizing: border-box;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .product-item img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+      .product-item p {
+        margin: 0;
+      }
+      .add-product-form {
+        display: none; /* Ocultar el formulario por defecto */
+        max-width: 600px; /* Ancho máximo del formulario */
+        margin: 1rem auto; /* Centrar horizontalmente y agregar margen superior */
+      }
+      .table {
+        width: 100%; /* Hacer que la tabla ocupe todo el ancho de la página */
+      }
+      .action-buttons a,
+      .action-buttons form {
+        display: inline-block;
+        margin-right: 5px; /* Agregar un margen entre los botones */
+      }
+  body
+    .header
+      h1 Bienvenido Comerciante
+
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarTogglerDemo03', aria-controls='navbarTogglerDemo03', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      a.navbar-brand(href='/commerces') Productos
+
+      .collapse.navbar-collapse#navbarTogglerDemo03
+        ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+          li.nav-item.active
+            a.nav-link#toggleFormBtn(href='#') Agregar Producto
+              span.sr-only (current)
+          li.nav-item.active
+            a.nav-link#toggleFormBtn(href='/commerces/compras') Historial de ventas
+              span.sr-only (current)
+            
+        form.form-inline.my-2.my-lg-0.mx-auto(id='productFilterForm') 
+          input.form-control.mr-sm-2.search-bar(type='search', placeholder='Buscar', aria-label='Buscar', id='productNameInput', style='width: 400px;')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='button', id='filterButton') Buscar
+
+        ul.navbar-nav.ml-auto
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+              | #{user.name}
+            .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
+              a.dropdown-item(href='/') Cerrar Sesión
+    br
+
+    .add-product-form
+      h2 Agregar Producto
+
+      form(action='/commerces', method='POST', enctype='multipart/form-data')
+        .form-group
+          label(for='name') Nombre del Producto
+          input#name.form-control(type='text', name='name', placeholder='Nombre del Producto', required)
+          
+        .form-group
+          label(for='price') Precio
+          input#price.form-control(type='number', name='price', placeholder='Precio', required)
+          
+        .form-group
+          label(for='caduceDate') Fecha de Caducidad
+          input#caduceDate.form-control(type='date', name='caduceDate', placeholder='Fecha de Caducidad', required)
+
+        .form-group
+          label(for='type') Tipo
+          .d-flex.flex-wrap
+            each type in ['lácteos', 'huevos', 'frutas', 'verduras', 'carnes', 'pollo', 'pescados y mariscos', 'panaderia', 'pasteleria', 'harina', 'levadura', 'mezclas para hornear', 'bebidas', 'congelados', 'enlatados', 'pastas', 'arroces', 'snacks', 'cereales','dulces', 'mermeladas', 'miel', 'azúcar', 'condimentos', 'salsas', 'aderezos', 'aceite', 'vinagre', 'té', 'café']
+              .form-check.mx-2.mb-2
+                input.form-check-input(type='checkbox', id=type, name='type[]', value=type)
+                label.form-check-label(for=type)= type
+
+        .form-group
+          label(for='freeGluten') Producto libre de gluten (sin TAAC)
+          select#freeGluten.form-control(name='freeGluten', required)
+            option(value='true') Sí
+            option(value='false') No
+
+        .form-group
+          label(for='stock') Stock
+          input#stock.form-control(type='number', name='stock', placeholder='Stock', required)
+          
+        .form-group
+          label(for='description') Descripción
+          textarea#description.form-control(name='description', rows='3', placeholder='Descripción del Producto')
+          
+        .form-group
+          label(for='photo') Foto del Producto
+          input#photo.form-control(type='file', name='photo', required)
+                    
+        button.btn.btn-primary(type='submit') Agregar Producto
+
+  .container
+      if orders.length
+          table.table.table-sm
+              thead
+                  tr
+                      th.text-center Usuario
+                      th.text-center Producto
+                      th.text-center Cantidad
+                      th.text-center Monto Total
+                      th.text-center Fecha
+                      th.text-center ✓
+              tbody
+                  each order in orders
+                      tr
+                          td.text-center= `${order.user.firstName} ${order.user.lastName}`
+                          td.text-center= order.product.name
+                          td.text-center= order.quantity
+                          td.text-center= order.totalAmount
+                          td.text-center= order.createdAt.toDateString()
+                          td.text-center
+                              form(action=`/commerces/compras/${order._id}`, method='POST')
+                                  button.btn.btn-success.btn-sm(type='submit') ✓ 
+      else
+          p No hay compras registradas.
+
+
+  script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+  script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+
+  script.
+    $(document).ready(function() {
+      $('#toggleFormBtn').click(function(e) {
+        e.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+        $('.add-product-form').toggle(); // Alternar la visibilidad del formulario al hacer clic en el botón
+        $('table, p').toggle(); // Alternar la visibilidad de la tabla de productos y el mensaje de "No hay productos disponibles"
+        $('#productFilterForm').toggle(); // Alternar la visibilidad del formulario de búsqueda
+      });
+    });
+
+  script.
+    $(document).ready(function() {
+      $('#filterButton').click(function() {
+        var searchTerm = $('#productNameInput').val().toLowerCase();
+        $('table.table tbody tr').each(function() {
+          var found = false;
+          $(this).find('td').each(function() {
+            var cellText = $(this).text().toLowerCase();
+            if (cellText.includes(searchTerm)) {
+              found = true;
+              return false; // Salir del bucle each() internamente
+            }
+          });
+          if (found) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      });
+    });

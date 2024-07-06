@@ -1,0 +1,253 @@
+doctype html
+html
+  head
+    title Food Saver
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css')
+
+    style.
+      .header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem; /* Espacio entre la imagen y el texto */
+        border-bottom: 2px solid #388E3C; /* Línea fina debajo del encabezado */
+      }
+      .header img {
+        width: 100px; /* Tamaño ajustado de la imagen */
+      }
+      .header h1 {
+        font-size: 2rem; /* Tamaño ajustado del texto */
+        margin: 0; /* Eliminar margen para centrar verticalmente */
+      }
+      .products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      .product-item {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        width: calc(25% - 1rem); /* 4 items per row */
+        text-align: center;
+        box-sizing: border-box;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .product-item img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+      .product-item p {
+        margin: 0;
+      }
+      .search-bar {
+        width: 100%;
+      }
+      #map-container {
+        display: none; /* Inicialmente oculto */
+        position: fixed; /* Para centrar el contenedor en la pantalla */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        justify-content: center;
+        align-items: center;
+      }
+      #map {
+        height: 100%; /* Ajusta la altura del mapa */
+        width: 100%;
+      }
+      .custom-map-control-button {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        cursor: pointer;
+        margin: 10px;
+        padding: 0 0.5em;
+        text-align: center;
+        font-size: 16px;
+        line-height: 38px;
+        width: 38px;
+        height: 38px;
+      }
+      .custom-map-control-button:hover {
+        background: #ebebeb;
+      }
+
+  body
+    .header
+      img(src="/images/fondo3.png", alt='Food Saver Logo')
+      h1 Food Saver
+
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarTogglerDemo03', aria-controls='#navbarTogglerDemo03', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      a.navbar-brand(href='/home') Home
+
+      .collapse.navbar-collapse#navbarTogglerDemo03
+        ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+          li.nav-item.active
+            a.nav-link(href='/products') Productos 
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='/stores') Locales adheridos
+
+        form.form-inline.my-2.my-lg-0.mx-auto(id='productFilterForm') 
+          input.form-control.mr-sm-2.search-bar(type='search', placeholder='Search', aria-label='Search', id='productNameInput', style='width: 400px;')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='button', id='filterButton') Buscar
+
+        ul.navbar-nav.ml-auto
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle(href='/home', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+              | #{user.name}
+            .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
+              a.dropdown-item(href='/') Cerrar Sesión
+
+          li.nav-item
+            a.nav-link(href='/carrito')
+              button.btn.btn-success
+                i(class='fa fa-shopping-cart')
+
+    br
+
+    .container
+      if stores.length
+        table.table
+          thead
+            tr
+              th Nombre
+              th Dirección
+              th Acciones
+          tbody
+            each store in stores
+              tr.store-item
+                td.store-name= store.name
+                td.store-address= `${store.address}, ${store.city}, ${store.province}, ${store.country}`
+                td
+                  a(href=`#`, onclick=`mostrarMapa('${store.address}', '${store.city}','${store.country}')`)
+                    button.btn.btn-primary(type='button')
+                      i(class='bi bi-geo-alt')
+      else
+        p No hay compras registradas.
+
+  #map-container
+    #map
+
+  script(src="https://maps.googleapis.com/maps/api/js?key=" + googleMapsApiKey + "&callback=initMap")
+  script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+  script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+  script(src='https://polyfill.io/v3/polyfill.min.js?features=default')
+
+  script.
+    async function geocodeAddress(address, city, country) {
+      const url = `https://trueway-geocoding.p.rapidapi.com/Geocode?address=${encodeURIComponent(address, city, country)}&language=es`;
+      const options = {
+          method: 'GET',
+          headers: {
+              'x-rapidapi-key': '9e767c90e5msh1d4fda8b8014521p1008bcjsnd2e17ea86c03',
+              'x-rapidapi-host': 'trueway-geocoding.p.rapidapi.com'
+          }
+      };
+
+      try {
+          const response = await fetch(url, options);
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+          return data;
+      } catch (error) {
+          console.error('Error fetching geocoding data:', error);
+          return null;
+      }
+    }
+
+    async function mostrarMapa(address, city, country) {
+      try {
+        const fullAddress = `${address}, ${city}, ${country}`;
+        const geocodingData = await geocodeAddress(fullAddress);
+        if (geocodingData && geocodingData.results.length > 0) {
+          const location = geocodingData.results[0].location;
+          const coord = { lat: location.lat, lng: location.lng };
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: coord
+          });
+
+          var marker = new google.maps.Marker({
+            position: coord,
+            map: map
+          });
+
+          // Agregar botón de cerrar
+          const closeButtonDiv = document.createElement("div");
+          const closeButton = document.createElement("button");
+          closeButton.innerHTML = "&times;";
+          closeButton.classList.add("custom-map-control-button");
+          closeButton.addEventListener("click", cerrarMapa);
+          closeButtonDiv.appendChild(closeButton);
+          map.controls[google.maps.ControlPosition.TOP_RIGHT].push(closeButtonDiv);
+
+          // Mostrar el contenedor del mapa si no está visible
+          $('#map-container').show();
+        } else {
+          console.error('No se encontraron resultados de geocodificación para la dirección:', address);
+        }
+      } catch (error) {
+        console.error('Error en la función mostrarMapa:', error);
+      }
+    }
+
+    function cerrarMapa() {
+      $('#map-container').hide(); // Ocultar el contenedor del mapa al cerrar
+    }
+
+    $(document).ready(function() {
+      $('#filterButton').click(function() {
+        var searchTerm = $('#productNameInput').val().toLowerCase();
+        $('.store-item').each(function() {
+          var storeName = $(this).find('.store-name').text().toLowerCase();
+          var storeAddress = $(this).find('.store-address').text().toLowerCase();
+          if (storeName.includes(searchTerm) || storeAddress.includes(searchTerm)) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      });
+
+      $('.filter-option').click(function() {
+        var selectedType = $(this).data('type');
+        $('.store-item').each(function() {
+          var productType = $(this).data('type');
+          if (productType === selectedType || selectedType === '') {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+
+        // Quitar clase active de todas las opciones y añadirla a la opción seleccionada
+        $('.filter-option').removeClass('active');
+        $(this).addClass('active');
+      });
+    });

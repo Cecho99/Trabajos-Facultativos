@@ -1,0 +1,87 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Registrarse - Food Saver
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css')
+    style.
+      .text-grey {
+        color: #757575;
+      }
+      .header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      .form-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+
+  body
+    .header
+      h1 Registrarse - Food Saver
+
+    .form-container
+      form(action='/registerCommerce', method='POST')
+        .form-group
+          label(for='name') Nombre Comercio
+          input#name.form-control(type='text', name='name', placeholder='Nombre', required)
+       
+        .form-group
+          label(for='password') Contraseña
+          .input-group
+            input#password.form-control(type='password', name='password', placeholder='Contraseña', required)
+            .input-group-append
+              span.input-group-text
+                i.bi.bi-eye-slash-fill.toggle-password
+          .text-grey 6 caracteres mínimo
+          
+        .form-group
+          label(for='email') Correo Electrónico
+          input#email.form-control(type='email', name='email', placeholder='Correo Electrónico', required)
+
+        .form-group
+          label(for='address') Dirección
+          input#address.form-control(type='text', name='address', placeholder='Dirección', required)
+
+        .form-group
+          label(for='postal_code') Código postal
+          input#postal_code.form-control(type='number', name='postal_code', placeholder='Código postal', required)
+        
+        .form-group
+          label(for='city') Ciudad
+          input#city.form-control(type='text', name='city', placeholder='Ciudad', required)
+
+        .form-group
+          label(for='province') Provincia
+          input#province.form-control(type='text', name='province', placeholder='Provincia', required)
+        
+        .form-group
+          label(for='country') País
+          input#country.form-control(type='text', name='country', placeholder='País', required)
+
+        button.btn.btn-success.btn-block(type='submit') Registrarse
+
+      hr
+
+      p.text-center.text-grey
+        | ¿Ya tienes una cuenta? 
+        a.text-grey-link(href='/') Iniciar sesión aquí
+
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+    script.
+      document.querySelector('.toggle-password').addEventListener('click', function (e) {
+        const passwordInput = document.querySelector('#password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('bi-eye-fill');
+        this.classList.toggle('bi-eye-slash-fill');
+      });

@@ -1,0 +1,232 @@
+doctype html
+html(lang='en')
+  head
+    title Food Saver - Admin
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css')
+    style.
+      .header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+        position: relative; /* Para posicionar el botón de cerrar sesión */
+      }
+      .logout-link {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        color: white; /* Color del texto */
+        background-color: #99d98c; /* Fondo del botón */
+        padding: 0.5rem 1rem; /* Espaciado interno */
+        border-radius: 5px; /* Bordes redondeados */
+        text-decoration: none; /* Sin subrayado */
+        font-size: 1rem; /* Tamaño de la fuente */
+        font-weight: bold; /* Negrita */
+      }
+      .products {
+        padding: 1rem;
+      }
+      .product-item {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        width: calc(25% - 1rem); /* 4 items per row */
+        text-align: center;
+        box-sizing: border-box;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .product-item img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+      .product-item p {
+        margin: 0;
+      }
+      .add-product-form {
+        display: none; /* Ocultar el formulario por defecto */
+        max-width: 600px; /* Ancho máximo del formulario */
+        margin: 1rem auto; /* Centrar horizontalmente y agregar margen superior */
+      }
+      .table {
+        width: 100%; /* Hacer que la tabla ocupe todo el ancho de la página */
+      }
+      .action-buttons a,
+      .action-buttons form {
+        display: inline-block;
+        margin-right: 5px; /* Agregar un margen entre los botones */
+      }
+      .btn-small {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+      }
+
+  body
+    .header
+      h1 Administrador
+
+      a.logout-link(href='/')
+        i.bi.bi-box-arrow-right
+
+  
+
+    main.commerces
+      if commerces && commerces.length
+        table.table.table-striped
+          thead
+            tr
+              th Nombre
+              th Email
+              th Calle
+              th Ciudad 
+              th Pais
+              th Codigo Postal
+              th Acciones
+          tbody
+            each commerce in commerces
+              tr(data-commerce-id=commerce._id)
+                td.editable-field(data-field='name')= commerce.name
+                td.editable-field(data-field='email')= commerce.email
+                td.editable-field(data-field='address')= commerce.address
+                td.editable-field(data-field='city')= commerce.city
+                td.editable-field(data-field='country')= commerce.country
+                td.editable-field(data-field='postal_code')= commerce.postal_code
+                td.action-buttons
+                  form(action='/admin/update-state/' + commerce._id + '?_method=PUT', method='POST')
+                    button.btn.btn-success.btn-small(type='submit')
+                      i(class='bi bi-check')
+                  form(action='/admin/' + commerce._id + '?_method=DELETE', method='POST', style='display:inline;')
+                    button.btn.btn-danger.btn-small(type='submit')
+                      i(class='bi bi-trash')
+                  button.btn.btn-secondary.edit-btn.btn-small(type='button')
+                    i(class='bi bi-pencil-square')
+      else
+        p No hay comercios disponibles
+
+
+
+  script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+  script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+
+  script.
+    $(document).ready(function() {
+      $('#toggleFormBtn').click(function(e) {
+        e.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+        $('.add-product-form').toggle(); // Alternar la visibilidad del formulario al hacer clic en el botón
+        $('table, p').toggle(); // Alternar la visibilidad de la tabla de productos y el mensaje de "No hay productos disponibles"
+        $('#productFilterForm').toggle(); // Alternar la visibilidad del formulario de búsqueda
+      });
+    });
+
+  script.
+    $(document).ready(function() {
+      $('#filterButton').click(function() {
+        var searchTerm = $('#productNameInput').val().toLowerCase();
+        $('.product-item').each(function() {
+          var productTitle = $(this).find('p').text().toLowerCase();
+          if (productTitle.includes(searchTerm)) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      });
+    });   
+  
+  script.
+    $(document).ready(function() {
+      var originalValues = {}; // Definir originalValues fuera del alcance de los eventos
+
+      // Función para activar la edición de campos
+      $('.edit-btn').click(function() {
+        var tableRow = $(this).closest('tr');
+
+        // Guardar los valores originales para poder restaurarlos al cancelar
+        originalValues = {};
+        tableRow.find('.editable-field').each(function() {
+          var fieldName = $(this).data('field');
+          var fieldValue = $(this).text().trim();
+          originalValues[fieldName] = fieldValue;
+        });
+
+        // Convertir los campos a inputs para editar
+        tableRow.find('.editable-field').each(function() {
+          var fieldValue = $(this).text().trim();
+          $(this).html(`<input type="text" class="form-control" value="${fieldValue}">`);
+        });
+
+        // Ocultar el botón de Eliminar
+        tableRow.find('.btn-danger').hide();
+        tableRow.find('.btn-success').hide();
+
+        // Mostrar botones de Guardar y Cancelar
+        tableRow.find('.action-buttons').append(`
+          <button class="btn btn-primary btn-sm save-btn" type="button">
+            <i class="bi bi-check-lg"></i>
+          </button>
+          <button class="btn btn-secondary btn-sm cancel-btn" type="button">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        `);
+
+        $(this).hide(); // Ocultar el botón Editar
+      });
+
+      // Función para cancelar la edición y restaurar los valores originales
+      $(document).on('click', '.cancel-btn', function() {
+        var tableRow = $(this).closest('tr');
+
+        // Restaurar los valores originales guardados previamente
+        tableRow.find('.editable-field').each(function() {
+          var fieldName = $(this).data('field');
+          var originalValue = originalValues[fieldName];
+          $(this).html(originalValue);
+        });
+
+        tableRow.find('.edit-btn').show();
+        tableRow.find('.save-btn, .cancel-btn').remove();
+        tableRow.find('.btn-danger').show();
+        tableRow.find('.btn-success').show();
+      });
+
+
+      $(document).on('click', '.save-btn', function() {
+        var tableRow = $(this).closest('tr');
+        var commerceId = tableRow.data('commerce-id').replace(/['"]+/g, '');
+        var updatedData = {};
+
+        tableRow.find('.editable-field').each(function() {
+          var fieldName = $(this).data('field');
+          var fieldValue = $(this).find('input').val();
+          updatedData[fieldName] = fieldValue;
+        });
+
+        $.ajax({
+          url: `/admin/${commerceId}`,
+          method: 'PUT',
+          data: $.param(updatedData),
+          contentType: 'application/x-www-form-urlencoded',
+        });
+
+
+        tableRow.find('.editable-field').each(function() {
+          var fieldName = $(this).data('field');
+          $(this).html(updatedData[fieldName]);
+        });
+
+        tableRow.find('.edit-btn').show();
+        tableRow.find('.save-btn, .cancel-btn').remove();
+        tableRow.find('.btn-danger').show();
+        tableRow.find('.btn-success').show();
+      });
+    });

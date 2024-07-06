@@ -1,0 +1,113 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Iniciar Sesión - Food Saver
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css')
+    style.
+      .text-grey {
+        color: #757575;
+      }
+      .header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      .form-container {
+        max-width: 400px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      .btn-google {
+        background-color: #D62D20;
+        color: white;
+        border: 1px solid #D62D20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      .btn-google i {
+        color: white;
+        margin-right: 8px;
+      }
+      .btn-google:hover, .btn-google:focus {
+        background-color: #E74B37;
+        border-color: #E74B37;
+        color: white;
+      }
+      .btn-facebook {
+        background-color: #4267B2;
+        color: white;
+        border: 1px solid #4267B2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      .btn-facebook i {
+        color: white;
+        margin-right: 8px;
+      }
+      .btn-facebook:hover, .btn-facebook:focus {
+        background-color: #5A7ABD;
+        border-color: #5A7ABD;
+        color: white;
+      }
+
+  body
+    .header
+      h1 Iniciar Sesión - Food Saver
+
+    .form-container
+      if error
+        .alert.alert-danger= error
+      
+      form(action='/', method='POST')
+        .form-group
+          label(for='email') Correo Electrónico
+          input#email.form-control(type='email', name='email', placeholder='Correo Electrónico', required)
+
+        .form-group
+          label(for='password') Contraseña
+          .input-group
+            input#password.form-control(type='password', name='password', placeholder='Contraseña', required)
+            .input-group-append
+              span.input-group-text
+                i.bi.bi-eye-slash-fill.toggle-password
+
+        button.btn.btn-success.btn-block(type='submit') Iniciar Sesión
+
+      br
+
+      .text-center
+          p.text-grey —— o continúa con ——
+          a.btn.btn-google.btn-block(href='/auth/google')
+            i.fa.fa-google
+            |  Iniciar sesión con Google
+          a.btn.btn-facebook.btn-block(href='/auth/facebook')
+            i.fa.fa-facebook
+            |  Iniciar sesión con Facebook
+    
+      hr
+
+      p.text-center.text-grey
+        | ¿No tienes cuenta? 
+        a.text-grey-link(href='/register') Registrate aquí
+
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+    script.
+      document.querySelector('.toggle-password').addEventListener('click', function (e) {
+        const passwordInput = document.querySelector('#password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('bi-eye-fill');
+        this.classList.toggle('bi-eye-slash-fill');
+      });

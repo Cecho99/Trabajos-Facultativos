@@ -1,0 +1,91 @@
+doctype html
+html
+  head
+    title Detalles del Producto | Food Saver
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')
+    style.
+      .header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem; /* Espacio entre la imagen y el texto */
+        border-bottom: 2px solid #388E3C; /* Línea fina debajo del encabezado */
+      }
+      .header img {
+        width: 100px; /* Tamaño ajustado de la imagen */
+      }
+      .header h1 {
+        font-size: 2rem; /* Tamaño ajustado del texto */
+        margin: 0; /* Eliminar margen para centrar verticalmente */
+      }
+      .product-details {
+        max-width: 600px; /* Ancho máximo del contenedor */
+        margin: 2rem auto; /* Margen superior e inferior con auto para centrar */
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        text-align: center; /* Centrar contenido */
+      }
+      .product-details img {
+        max-width: 80%; /* Tamaño máximo de la imagen */
+        height: auto;
+        margin-bottom: 1rem;
+      }
+      .product-details h2 {
+        font-size: 2rem; /* Tamaño del título */
+        margin-bottom: 1rem;
+        color: #333;
+      }
+      .product-details p {
+        font-size: 1.2rem; /* Tamaño del texto */
+        margin-bottom: 1rem;
+      }
+  body
+    .header
+      img(src="/images/fondo3.png", alt='Food Saver Logo')
+      h1 Food Saver
+
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarTogglerDemo03', aria-controls='navbarTogglerDemo03', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      a.navbar-brand(href='/home') Home
+
+      .collapse.navbar-collapse#navbarTogglerDemo03
+        ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+          li.nav-item.active
+            a.nav-link(href='/products') Productos 
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='/stores') Locales adheridos
+
+        form.form-inline.my-2.my-lg-0.mx-auto(id='productFilterForm') 
+          input.form-control.mr-sm-2.search-bar(type='search', placeholder='Search', aria-label='Search', id='productNameInput', style='width: 400px;')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='button', id='filterButton') Buscar
+
+        ul.navbar-nav.ml-auto
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle(href='/home', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+              | #{user.name}
+            .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
+              a.dropdown-item(href='/') Cerrar Sesión
+
+          li.nav-item
+            a.nav-link(href='/carrito')
+              button.btn.btn-success
+                i(class='fa fa-shopping-cart')
+                
+    .container
+      .product-details
+        img(src=`${product.photo}`, alt=`${product.name}`)
+        h2 #{product.name}
+        p Descripción: #{product.description}
+        p Precio: $#{product.price}
+        p Stock: #{product.stock}
+        p Fecha de Vencimiento: #{product.caduceDate ? product.caduceDate.toLocaleDateString() : 'No especificada'}
